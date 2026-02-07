@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Hrutuja ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(to bottom right, #ff758c, #ff7eb3);
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+    overflow: hidden;
+    color: white;
+}
+
+h1 {
+    margin-top: 80px;
+    font-size: 40px;
+}
+
+p {
+    font-size: 22px;
+}
+
+button {
+    font-size: 20px;
+    padding: 12px 30px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#yesBtn {
+    background-color: #28a745;
+    color: white;
+}
+
+#noBtn {
+    background-color: #dc3545;
+    color: white;
+    position: absolute;
+}
+
+/* Floating hearts */
+.heart {
+    position: fixed;
+    bottom: -20px;
+    color: pink;
+    font-size: 20px;
+    animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-100vh); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 Background Music -->
+<audio autoplay loop>
+    <source src="taqdeer.mp3">
+
+</audio>
+
+<h1>Hrutuja Machkar 💖</h1>
+<p>Will you be my Valentine? 💕</p>
+
+<button id="yesBtn" onclick="yesClicked()">Yes ❤️</button>
+<button id="noBtn" onclick="noClicked()">No 😢</button>
+
+<script>
+let noCount = 0;
+
+function noClicked() {
+    noCount++;
+    let noBtn = document.getElementById("noBtn");
+    let yesBtn = document.getElementById("yesBtn");
+
+    noBtn.style.transform = `scale(${1 - noCount * 0.15})`;
+    yesBtn.style.transform = `scale(${1 + noCount * 0.15})`;
+
+    if (noCount >= 4) {
+        noBtn.innerText = "Yes ❤️";
+        noBtn.onclick = yesClicked;
+        noBtn.style.background = "#28a745";
+    }
+}
+
+function yesClicked() {
+    document.body.innerHTML = `
+        <h1>Yayyy Hrutuja 💕🥰</h1>
+        <p>You just made me the happiest person ❤️</p>
+        <button onclick="shareWhatsApp()">Share on WhatsApp 💚</button>
+    `;
+}
+
+function shareWhatsApp() {
+    let text = "I just said YES 💕🥰 Happy Valentine’s Day ❤️";
+    let url = "https://wa.me/?text=" + encodeURIComponent(text);
+    window.open(url, "_blank");
+}
+
+/* Hearts animation */
+setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "💕";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 15 + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 6000);
+}, 400);
+</script>
+
+</body>
+</html>
